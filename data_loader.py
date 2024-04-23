@@ -1,4 +1,5 @@
 import torch
+from torch.utils.data import Dataset, DataLoader
 
 class Triage(Dataset):
     def __init__(self, dataframe, tokenizer, max_len):
@@ -15,7 +16,8 @@ class Triage(Dataset):
             None,
             add_special_tokens=True,
             max_length=self.max_len,
-            pad_to_max_length=True,
+            #pad_to_max_length=True,
+            padding='max_length',
             return_token_type_ids=True,
             truncation=True
         )

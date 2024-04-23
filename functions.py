@@ -1,3 +1,8 @@
+import os
+import gdown
+import pandas as pd
+import torch
+
 # Defining the training function on the 80% of the dataset for tuning the distilbert model
 def data_ingestion(gdrive_link):
     '''
@@ -12,13 +17,16 @@ def data_ingestion(gdrive_link):
         file_id = dataset_url.split("/")[-2]
         prefix = 'https://drive.google.com/uc?/export=download&id='
         gdown.download(prefix+file_id,download_dir)
+        df = pd.read_csv("artifacts/data.csv")
 
     except:
         raise Exception
     
+    return df
+    
 
 
-def train(epoch):
+def train(model, loss_function, optimizer, training_loader, epoch, device):
     tr_loss = 0
     n_correct = 0
     nb_tr_steps = 0
@@ -54,7 +62,7 @@ def train(epoch):
     return
 
 
-def valid(model, testing_loader):
+def valid(model, loss_function, testing_loader, device):
     model.eval()
     tr_loss = 0
     nb_tr_steps = 0

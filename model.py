@@ -1,3 +1,6 @@
+import torch
+from transformers import DistilBertModel
+
 # Creating the customized model, by adding a drop out and a dense layer on top of distil bert to get the final output for the model.
 
 class DistillBERTClass(torch.nn.Module):
