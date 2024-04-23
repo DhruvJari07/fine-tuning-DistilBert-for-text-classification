@@ -94,14 +94,13 @@ def valid(model, loss_function, testing_loader, device):
     return epoch_accu
 
 
-def predict(model, tokenizer, device, sentence):
+def prediction(model, tokenizer, device, sentence):
     # Tokenize the input sentence
     inputs = tokenizer(sentence, return_tensors='pt', truncation=True, padding=True).to(device)
 
     # Forward pass through the model
     with torch.no_grad():
         outputs = model(**inputs)
-    print(f"outputs: {outputs}")
     # Get the predicted probabilities
     probabilities = torch.sigmoid(outputs)
 

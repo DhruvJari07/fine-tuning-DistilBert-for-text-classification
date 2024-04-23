@@ -2,3 +2,4 @@ transformers==4.39.3
 torch
 pandas
 gdown
+streamlit
