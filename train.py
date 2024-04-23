@@ -1,7 +1,7 @@
 # Importing the libraries needed
 import pandas as pd
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader
 from transformers import DistilBertModel, DistilBertTokenizer
 from data_loader import Triage
 from functions import train, data_ingestion
