@@ -92,3 +92,20 @@ def valid(model, loss_function, testing_loader, device):
     print(f"Validation Accuracy Epoch: {epoch_accu}")
 
     return epoch_accu
+
+
+def predict(model, tokenizer, device, sentence):
+    # Tokenize the input sentence
+    inputs = tokenizer(sentence, return_tensors='pt', truncation=True, padding=True).to(device)
+
+    # Forward pass through the model
+    with torch.no_grad():
+        outputs = model(**inputs)
+    print(f"outputs: {outputs}")
+    # Get the predicted probabilities
+    probabilities = torch.sigmoid(outputs)
+
+    # Convert probabilities to binary predictions
+    predictions = (probabilities > 0.5).int().squeeze()
+
+    return predictions.item()
