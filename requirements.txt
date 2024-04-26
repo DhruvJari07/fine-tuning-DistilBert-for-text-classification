@@ -1,5 +1,5 @@
 transformers==4.39.3
-torch
+torch==2.1.2
 pandas
 gdown
 streamlit
