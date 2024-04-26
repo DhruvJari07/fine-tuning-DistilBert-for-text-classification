@@ -101,10 +101,11 @@ def prediction(model, tokenizer, device, sentence):
     # Forward pass through the model
     with torch.no_grad():
         outputs = model(**inputs)
+        print(f"outputs: {outputs}")
     # Get the predicted probabilities
     probabilities = torch.sigmoid(outputs)
 
     # Convert probabilities to binary predictions
     predictions = (probabilities > 0.5).int().squeeze()
-
+    print(f"proba is {probabilities}, pred is {predictions}")
     return predictions.item()
