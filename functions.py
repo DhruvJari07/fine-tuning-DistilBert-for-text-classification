@@ -97,15 +97,17 @@ def valid(model, loss_function, testing_loader, device):
 def prediction(model, tokenizer, device, sentence):
     # Tokenize the input sentence
     inputs = tokenizer(sentence, return_tensors='pt', truncation=True, padding=True).to(device)
-
+    #print("inputs loaded")
+    #print(f"inputs: {inputs}")
+    #print("forward pass")
     # Forward pass through the model
     with torch.no_grad():
         outputs = model(**inputs)
-        print(f"outputs: {outputs}")
+    #print(f"outputs: {outputs}")
     # Get the predicted probabilities
     probabilities = torch.sigmoid(outputs)
-
+    #print(f"probabilities: {probabilities}")
     # Convert probabilities to binary predictions
     predictions = (probabilities > 0.5).int().squeeze()
-    print(f"proba is {probabilities}, pred is {predictions}")
+    #print(f"proba is {probabilities}, pred is {predictions}")
     return predictions.item()
