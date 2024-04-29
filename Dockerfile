@@ -1,19 +1,32 @@
+#FROM python:3.10-slim
 
-FROM python:3.10-slim
+#WORKDIR /app
 
-WORKDIR /app
+#COPY requirements.txt requirements.txt
+#RUN pip3 install -r requirements.txt
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+#COPY . .
+
+#EXPOSE 5000
+
+# Define environment variable
+#ENV FLASK_APP=flask_app.py
+
+# Run the Flask application
+#CMD ["flask", "run", "--host=0.0.0.0"]
+
+FROM public.ecr.aws/lambda/python:3.10
+
+COPY requirements.txt  .
+RUN  python -m pip install --upgrade pip
+RUN  yum install gcc -y
+RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+
+# Copy function code
+COPY lambda_function.py ${LAMBDA_TASK_ROOT}
 
 COPY . .
 
-EXPOSE 5000
+#RUN chmod -R 0777 ./models
 
-# Define environment variable
-ENV FLASK_APP=flask_app.py
-
-# Run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
-
-# CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD ["lambda_function.lambda_handler"]

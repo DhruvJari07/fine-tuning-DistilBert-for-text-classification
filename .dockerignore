@@ -1,0 +1,8 @@
+*.ipynb
+artifacts
+__pycache__
+templates
+.gitignore
+data_loader.py
+train.py
+validation.py
