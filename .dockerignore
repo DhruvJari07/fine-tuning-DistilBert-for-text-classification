@@ -6,3 +6,4 @@ templates
 data_loader.py
 train.py
 validation.py
+flask_docker
