@@ -1,7 +1,8 @@
-transformers==4.39.3
-torch==2.1.2
 pandas
 gdown
 streamlit
 flask
 python-dotenv
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==2.1.2+cpu
+transformers==4.39.3

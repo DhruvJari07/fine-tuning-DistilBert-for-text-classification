@@ -12,27 +12,19 @@ class PredictPipeline:
         device = 'cuda' if cuda.is_available() else 'cpu'
         # model = load_object(os.path.join("artifacts","model_training","model.pkl"))
         model = DistillBERTClass()
-        #print("model loaded with DistilBertclass")
-        #print(model)
+
         model.to(device)
 
         # Load the saved model weights into the initialized model
-        model.load_state_dict(torch.load("model_state_dict_5.pth", map_location=torch.device('cpu')))
-        #print("model loaded with state_dict_5")
-        
-        # Creating the loss function and optimizer
-        #loss_function = torch.nn.BCEWithLogitsLoss()
-        #optimizer = torch.optim.Adam(params=model.parameters(), lr=LEARNING_RATE)
+        model.load_state_dict(torch.load("./premodels/model_state_dict_5.pth", map_location=torch.device('cpu')))
 
         # Make sure to set the model to evaluation mode after loading
         model.eval()
-        #print("model eval initiated")
         
         # Load the tokenizer
-        tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
-        #print('tokenizer loaded')
-
-        #print(list(model.state_dict().items())[-3:-1])
+        #tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+        MODEL_PATH = "./premodels"
+        tokenizer = DistilBertTokenizer.from_pretrained(MODEL_PATH)
 
         result = prediction(model, tokenizer, device, text)
         # result = model.predict(text)

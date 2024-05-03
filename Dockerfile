@@ -9,7 +9,7 @@ RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 # Copy function code
 COPY lambda_function.py ${LAMBDA_TASK_ROOT}
 
-COPY model_state_dict_5.pth /opt/ml/model_state_dict_5.pth
+COPY premodels/model_state_dict_5.pth /opt/ml/model_state_dict_5.pth
 
 #COPY . ${LAMBDA_TASK_ROOT}
 
