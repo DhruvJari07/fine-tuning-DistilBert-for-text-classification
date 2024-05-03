@@ -7,3 +7,9 @@ data_loader.py
 train.py
 validation.py
 flask_docker
+app.py
+download_model.py
+flask_app.py
+lambda_app.py
+.env
+lambda_function_test.py
