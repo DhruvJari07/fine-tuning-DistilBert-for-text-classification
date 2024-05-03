@@ -4,3 +4,4 @@ pandas
 gdown
 streamlit
 flask
+python-dotenv
